@@ -10331,7 +10331,7 @@ rte_swx_ctl_pipeline_learner_timeout_set(struct rte_swx_pipeline *p,
 		return -EINVAL;
 
 	l = learner_find_by_id(p, learner_id);
-	if (!l || (timeout_id >= l->n_timeouts))
+	if (!l || (timeout_id >= l->n_timeouts) || !timeout_id)
 		return -EINVAL;
 
 	if (!p->build_done)

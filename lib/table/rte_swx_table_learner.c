@@ -352,7 +352,10 @@ table_params_get(struct table_params *p, struct rte_swx_table_learner_params *pa
 	    (params->n_key_timeouts > RTE_SWX_TABLE_LEARNER_N_KEY_TIMEOUTS_MAX))
 		return -EINVAL;
 
-	for (i = 0; i < params->n_key_timeouts; i++)
+	if (params->key_timeout[0])
+		return -EINVAL;
+
+	for (i = 1; i < params->n_key_timeouts; i++)
 		if (!params->key_timeout[i])
 			return -EINVAL;
 
